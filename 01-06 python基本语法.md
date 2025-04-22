@@ -107,6 +107,9 @@ match expression: # 表达式
 
 注意，`range(a,b)`左闭右开，`range(a,b,c)`从a到b步长为c，右开
 
+2. while循环
+
+注意，`break'：停止循环，`continue`：跳过本次循环
 
 
 
