@@ -7,6 +7,7 @@ CSV（Comma Separated Values）全称逗号分隔值文件是一种简单、通�
 **写入csv文件**
 1. pandas包：`pd.to_csv()`
 2. 自带的`csv`模块，通过`.writer`函数返回`csvwriter`对象，然后通过该对象的`writerow`或者`writerows`将数据写入csv中。例如：
+
 ```python
 import csv
 import random
@@ -98,9 +99,11 @@ for row in range(len(scores)):
         sheet.write(row + 1, col + 1, scores[row][col])
 # 保存Excel工作簿
 wb.save('考试成绩表.xls')
-```python
-在通过`write`方法写入时，还可以写入公式：
 ```
+
+在通过`write`方法写入时，还可以写入公式：
+
+```python
 sheet.write(nrows, ncols, xlwt.Formula(f'sum(G2:G{nrows})))
 ```
 
