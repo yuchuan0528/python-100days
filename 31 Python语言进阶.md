@@ -107,6 +107,28 @@ Python内置的数据类型和方法，`collections`模块在这些内置类型�
 
 `collections`有如下子类：
 
+![image](https://github.com/user-attachments/assets/22fb5081-d0d5-41fe-819f-f72abaf5ae78)
+
+`Counter`：`dict`的子类，键是元素，值是元素的计数，它的`most_common()`方法可以帮助我们获取出现频率最高的元素。
+
+```python
+"""
+找出序列中出现次数最多的元素
+"""
+from collections import Counter
+
+words = [
+    'look', 'into', 'my', 'eyes', 'look', 'into', 'my', 'eyes',
+    'the', 'eyes', 'the', 'eyes', 'the', 'eyes', 'not', 'around',
+    'the', 'eyes', "don't", 'look', 'around', 'the', 'eyes',
+    'look', 'into', 'my', 'eyes', "you're", 'under'
+]
+counter = Counter(words)
+print(counter.most_common(3))
+```
+
+
+
 
 
 
