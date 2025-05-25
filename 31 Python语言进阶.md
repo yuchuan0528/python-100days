@@ -127,6 +127,78 @@ counter = Counter(words)
 print(counter.most_common(3))
 ```
 
+# 数据结构和算法
+
+评价算法的好坏：渐近时间复杂度和渐近空间复杂度。（渐近时间复杂度的大O标记）
+
+几个常见算法：
+
+1. 排序算法（选择、冒泡和归并）和查找算法（顺序和折半）
+
+选择排序：每次从待排序的数据中选择最小（或最大）的元素，放到已排序序列的末尾，直到全部数据排序完成。时间复杂度 O^2
+
+`lambda`匿名函数，语法格式是`lambda arguments: expression`
+
+```python
+def select_sort(items, comp = lambda x, y: x > y): #函数作为参数传入
+    for i in range(len(items)-1):
+        min_index = i
+        for j in range(i+1, len(items)): # 找到i后最小的位置
+            if comp(items[i], items[j]):
+                min_index = j
+        items[i], items[min_index] = items[min_index], items[i]
+    return items
+```
+
+冒泡排序：重复地遍历待排序的列表，比较相邻的元素并交换它们的位置来实现排序。该算法的名称来源于较小的元素会像"气泡"一样逐渐"浮"到列表的顶端。实际在每一轮遍历中，由于比较前后两元素的大小，最大的元素会逐步冒泡到列表的最后
+
+```python
+def bubble_sort(items, comp = lambda x, y: x > y):
+    for i in range(len(items)):
+        sort = False
+        for j in range(len(items)-1-i):
+            if comp(items[j], items[j+1]):
+                items[j], items[j+1] = items[j+1], items[j]
+                sort = True
+        if not sort:
+            break
+    return items
+```
+
+双向冒泡排序：冒泡排序的一种变形。该算法与冒泡排序的不同处在于排序时是以双向在序列中进行排序，即先从左往右排序，那么下一轮就从右往左，循环往复。
+
+```python
+def multi_bubble_sort(items, comp = lambda x, y: x > y):
+    for i in range(len(items):
+        # 先正向
+        sort = False
+        for j in range(len(items)-1-i):
+            if comp(items[j], items[j+1]):
+                items[j], items[j+1] = items[j+1], items[j]
+                sort = True
+        # 如果没排完，反向
+        if sort:
+            sort = False
+            for k in range(len(items-2-i), i, -1)
+                if comp(items[k-1], items[k]):
+                    items[k-1], items[k] = items[k], items[k-1]
+                    sort = True
+        if not sort:
+            break
+    return items
+
+```
+
+
+        
+                
+
+
+
+
+
+
+
 
 
 
