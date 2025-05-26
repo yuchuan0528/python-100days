@@ -135,7 +135,7 @@ print(counter.most_common(3))
 
 1. 排序算法（选择、冒泡和归并）和查找算法（顺序和折半）
 
-选择排序：每次从待排序的数据中选择最小（或最大）的元素，放到已排序序列的末尾，直到全部数据排序完成。时间复杂度 O^2
+**选择排序**：每次从待排序的数据中选择最小（或最大）的元素，放到已排序序列的末尾，直到全部数据排序完成。时间复杂度 O^2
 
 `lambda`匿名函数，语法格式是`lambda arguments: expression`
 
@@ -150,7 +150,7 @@ def select_sort(items, comp = lambda x, y: x > y): #函数作为参数传入
     return items
 ```
 
-冒泡排序：重复地遍历待排序的列表，比较相邻的元素并交换它们的位置来实现排序。该算法的名称来源于较小的元素会像"气泡"一样逐渐"浮"到列表的顶端。实际在每一轮遍历中，由于比较前后两元素的大小，最大的元素会逐步冒泡到列表的最后
+**冒泡排序**：重复地遍历待排序的列表，比较相邻的元素并交换它们的位置来实现排序。该算法的名称来源于较小的元素会像"气泡"一样逐渐"浮"到列表的顶端。实际在每一轮遍历中，由于比较前后两元素的大小，最大的元素会逐步冒泡到列表的最后
 
 ```python
 def bubble_sort(items, comp = lambda x, y: x > y):
@@ -165,7 +165,7 @@ def bubble_sort(items, comp = lambda x, y: x > y):
     return items
 ```
 
-双向冒泡排序：冒泡排序的一种变形。该算法与冒泡排序的不同处在于排序时是以双向在序列中进行排序，即先从左往右排序，那么下一轮就从右往左，循环往复。
+**双向冒泡排序**：冒泡排序的一种变形。该算法与冒泡排序的不同处在于排序时是以双向在序列中进行排序，即先从左往右排序，那么下一轮就从右往左，循环往复。
 
 ```python
 def multi_bubble_sort(items, comp = lambda x, y: x > y):
@@ -189,7 +189,79 @@ def multi_bubble_sort(items, comp = lambda x, y: x > y):
 
 ```
 
+2. 其它常用算法：
+**穷举法** - 又称为暴力破解法，对所有的可能性进行验证，直到找到正确答案。
 
+举例：百钱百鸡。公鸡5元一只 母鸡3元一只 小鸡1元三只，用100元买100只鸡 问公鸡/母鸡/小鸡各多少只
+
+```python
+for x in range(20):
+    for y in range(33):
+        z = 100 - x - y # 小鸡的只数
+        if 5*x + 3*y + z//3 == 100 and z%3 == 0:
+            print(x, y, z)
+``` 
+ 
+贪婪法 - 在对问题求解时，总是做出在当前看来最好的选择，不追求最优解，快速找到满意解。
+
+举例：假设小偷有一个背包，最多能装20公斤赃物，他闯入一户人家，发现如下表所示的物品。很显然，他不能把所有物品都装进背包，所以必须确定拿走哪些物品，留下哪些物品。
+
+  |  名称  | 价格（美元） | 重量（kg） |
+  | :----: | :----------: | :--------: |
+  |  电脑  |     200      |     20     |
+  | 收音机 |      20      |     4      |
+  |   钟   |     175      |     10     |
+  |  花瓶  |      50      |     2      |
+  |   书   |      10      |     1      |
+  |  油画  |      90      |     9      |
+
+```Python
+class Thing(object):
+      """物品"""
+  
+      def __init__(self, name, price, weight):
+          self.name = name
+          self.price = price
+          self.weight = weight
+  
+      @property
+      def value(self):
+          """价格重量比"""
+          return self.price / self.weight
+  
+  
+  def input_thing():
+      """输入物品信息"""
+      name_str, price_str, weight_str = input().split()
+      return name_str, int(price_str), int(weight_str)
+  
+  
+  def main():
+      """主函数"""
+      max_weight, num_of_things = map(int, input().split())
+      all_things = []
+      for _ in range(num_of_things):
+          all_things.append(Thing(*input_thing()))
+      all_things.sort(key=lambda x: x.value, reverse=True)
+      total_weight = 0
+      total_price = 0
+      for thing in all_things:
+          if total_weight + thing.weight <= max_weight:
+              print(f'小偷拿走了{thing.name}')
+              total_weight += thing.weight
+              total_price += thing.price
+      print(f'总价值: {total_price}美元')
+  
+  
+  if __name__ == '__main__':
+      main()
+```
+
+分治法 - 把一个复杂的问题分成两个或更多的相同或相似的子问题，再把子问题分成更小的子问题，直到可以直接求解的程度，最后将子问题的解进行合并得到原问题的解。
+
+回溯法 - 回溯法又称为试探法，按选优条件向前搜索，当搜索到某一步发现原先选择并不优或达不到目标时，就退回一步重新选择。
+
+动态规划 - 基本思想也是将待求解问题分解成若干个子问题，先求解并保存这些子问题的解，避免产生大量的重复运算。
         
                 
 
